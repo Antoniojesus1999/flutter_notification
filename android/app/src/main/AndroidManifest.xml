@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_notificacion">
+    package="com.ajpv.flutter_notificacion">
    <application
         android:label="flutter_notificacion"
         android:name="${applicationName}"
