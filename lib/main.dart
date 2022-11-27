@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
       initialRoute: 'home',
-      routes: {'home': (_) => HomeScreen(), 'message': (_) => MessageScreen()},
+      routes: {'home': ( _ ) => HomeScreen(), 'message': ( _ ) => MessageScreen()},
     );
   }
 }
