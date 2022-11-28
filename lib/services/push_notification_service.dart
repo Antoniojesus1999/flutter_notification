@@ -1,1 +1,29 @@
-//6D:DC:70:35:20:38:C5:AF:BE:75:34:88:B2:13:1C:5C:E4:89:B0:1A
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+class PushNotificationService{
+  static FirebaseMessaging messaging = FirebaseMessaging.instance;
+  static String? token;
+
+// Dependiendo donde se este ejecutando la aplicación entra en un método otro
+  static Future _backgroudHandler(RemoteMessage message) async {
+    print('entra por el background Handler ${message.messageId}');
+  }
+
+  static Future _onMessageHandler(RemoteMessage message) async{
+    print(' entra por el segundo onMessage Hnadler ${message.messageId}');
+  }
+  static Future _onMessageOpenApp(RemoteMessage message) async {
+    print('onMessageOpenApp Handler ${message.messageId}');
+  }
+
+  static Future initializeApp() async {
+    await Firebase.initializeApp();
+    token = await FirebaseMessaging.instance.getToken();
+    print('token: ${token}');
+
+    FirebaseMessaging.onBackgroundMessage(_backgroudHandler);
+    FirebaseMessaging.onMessage.listen(_onMessageHandler);
+    FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenApp);
+  }
+}
