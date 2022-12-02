@@ -35,6 +35,21 @@ class PushNotificationService{
     FirebaseMessaging.onMessage.listen(_onMessageHandler);
     FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenApp);
   }
+   // Apple / Web
+  static requestPermission() async {
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true
+    );
+
+    print('User push notification status ${ settings.authorizationStatus }');
+
+  }
   static closeStreams(){
     _messageStream.close();
   }
